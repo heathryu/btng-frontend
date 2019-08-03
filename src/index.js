@@ -3,17 +3,23 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
 import { StylesProvider } from '@material-ui/styles';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import theme from './theme';
+import store from './redux/configureStore';
+
+console.log(store.getState());
 
 ReactDOM.render(
   <StylesProvider injectFirst>
     <ThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MuiThemeProvider>
     </ThemeProvider>
   </StylesProvider>,
