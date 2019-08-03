@@ -1,24 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import {Button} from './components/Button'
+import {Card} from './components/card'
+import InputForm from './containers/input-form'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Card 
+        heading="Team"
+        subheading1="Send Money"
+        subheading2="Make a donaton"
+      />
+      <InputForm />
     </div>
   );
 }
