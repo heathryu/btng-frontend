@@ -50,6 +50,8 @@ export default function MenuListComposition(props) {
           aria-controls="menu-list-grow"
           aria-haspopup="true"
           onClick={handleToggle}
+          color="primary"
+          variant="contained"
         >
           Choose your Currency
         </Button>

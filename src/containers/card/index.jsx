@@ -4,6 +4,7 @@ import InputForm from '../input-form';
 import { Button } from '../../components/Button'
 import MenuListComposition from '../drop-down-menu'
 import { Input } from '../../components/input'
+import isEqual from 'lodash/isEqual'
 class PriceCard extends React.Component {
 
     state = {
@@ -11,7 +12,16 @@ class PriceCard extends React.Component {
     }
 
 
-    onChangeText = (e) => this.setState({ value: e.target.value })
+    onChangeText = (e) => {
+        this.setState({ value: e.target.value })
+        this.props.getAmountCCY(e.target.value)
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(!isEqual(this.props.value, prevProps.value)){
+            this.setState({value: this.props.value})
+        }
+    }
 
 
     render() {

@@ -1,0 +1,1 @@
+export const conversion = conversion => amount => conversion * amount 
