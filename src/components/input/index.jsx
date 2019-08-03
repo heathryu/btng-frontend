@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 const Input = ({value ="NO VALUES",  onChange = () =>{}}) => (
     <TextField
     id="standard-name"
-    label="Name"
+    label="Amount"
     value={value}
     onChange={onChange}
     margin="normal"

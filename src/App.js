@@ -22,8 +22,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="App2">
-          <PriceCard value="1.0" CCY={CCY1} getCCY={this.getCCY1}/>
-          <PriceCard value="2.0" CCY={CCY2} getCCY={this.getCCY2}/>
+          <PriceCard value="100" CCY={CCY1} getCCY={this.getCCY1}/>
+          <PriceCard value="200" CCY={CCY2} getCCY={this.getCCY2}/>
         </div>
         <Button title="Send" />
       </div>
