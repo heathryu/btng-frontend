@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -29,7 +29,12 @@ export default function MenuListComposition() {
     setOpen(prevOpen => !prevOpen);
   }
 
-  function handleClose(event) {
+  function onClick(e){
+    props.getCCY(e.target.innerText)
+    handleClose(e)
+  }
+
+  function handleClose(event, v) {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -57,7 +62,7 @@ export default function MenuListComposition() {
               <Paper id="menu-list-grow">
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList className="menuList">
-                    {LIST_OF_CURRENCIES.map(currency => <MenuItem onClick={handleClose}>{currency}</MenuItem>)}
+                    {LIST_OF_CURRENCIES.map(currency => <MenuItem key={currency} onClick={onClick}>{currency}</MenuItem>)}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

@@ -26,17 +26,20 @@ const useStyles = makeStyles({
   },
 });
 
-function Card({heading, subheading1, subheading2}) {
+function Card({MenuList, Input, subheading2, CCY}) {
   const classes = useStyles();
 
   return (
     <MaterialCard className={classes.card}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-        {heading}
+        {MenuList}
         </Typography>
         <Typography variant="body2" component="p">
-          {subheading1}
+          {CCY}
+        </Typography>
+        <Typography variant="body2" component="p">
+          {Input}
           <br />
           {subheading2}
         </Typography>

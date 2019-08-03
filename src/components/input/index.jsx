@@ -1,10 +1,10 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
-const Input = ({values ="NO VALUES",  onChange = () =>{}}) => (
+const Input = ({value ="NO VALUES",  onChange = () =>{}}) => (
     <TextField
     id="standard-name"
     label="Name"
-    value={values}
+    value={value}
     onChange={onChange}
     margin="normal"
     />
