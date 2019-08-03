@@ -4,7 +4,9 @@ import TextField from "@material-ui/core/TextField";
 
 export const Form = (props) => {
   return (
-   <form onSubmit={() => {}}>
+   <form onSubmit={e => {
+    e.preventDefault
+   }}>
      <TextField
        id="name"
        name="name"
