@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
@@ -9,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import isEqual from 'lodash/isEqual'
+import isEqual from 'lodash/isEqual';
 import { getTransferDetails } from '../../redux/actions/transferDetails';
 
 const formatNumber = number =>
@@ -18,20 +19,30 @@ const formatNumber = number =>
     maximumFractionDigits: 2
   });
 
-class  DonationDialog extends React.Component {
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+`;
 
-  
-  componentDidMount(){
-    if(this.props.location.transferDetails){
-
-      const {CCY1,CCY2, amount1, amount2} = this.props.location.transferDetails.props
-      this.props.getTransferDetails(CCY1, CCY2, Number(amount1), Number(amount2));
-    }   
+class DonationDialog extends React.Component {
+  componentDidMount() {
+    if (this.props.location.transferDetails) {
+      const {
+        CCY1,
+        CCY2,
+        amount1,
+        amount2
+      } = this.props.location.transferDetails.props;
+      this.props.getTransferDetails(
+        CCY1,
+        CCY2,
+        Number(amount1),
+        Number(amount2)
+      );
+    }
   }
-
-
-
-
 
   rowsFunc = () => [
     {
@@ -54,12 +65,16 @@ class  DonationDialog extends React.Component {
     },
     {
       title: 'Your total will be',
-      target: `${this.props.destCurrencySymbol} ${formatNumber(this.props.destTotal)}`,
-      origin: `${this.props.originCurrencySymbol} ${formatNumber(this.props.originTotal)}`
+      target: `${this.props.destCurrencySymbol} ${formatNumber(
+        this.props.destTotal
+      )}`,
+      origin: `${this.props.originCurrencySymbol} ${formatNumber(
+        this.props.originTotal
+      )}`
     }
   ];
 
-  render(){
+  render() {
     return (
       <div>
         <Container maxWidth="sm" />
@@ -83,8 +98,11 @@ class  DonationDialog extends React.Component {
             ))}
           </TableBody>
         </Table>
-        <Button color="secondary">No, Thank you</Button>
-        <Button color="primary">Of Course!</Button>
+
+        <ButtonWrapper>
+          <Button color="secondary">No, Thank you</Button>
+          <Button color="primary">Of Course!</Button>
+        </ButtonWrapper>
       </div>
     );
   }
