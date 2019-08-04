@@ -55,6 +55,10 @@ class DonationDialog extends React.Component {
     }
   }
 
+  navigateTo = () => {
+    this.props.history.push('/transfer-result')
+  }
+
   rowsFunc = () => [
     {
       title: 'Your transfer amount',
@@ -115,7 +119,7 @@ class DonationDialog extends React.Component {
         </TextWrapper>
         <ButtonWrapper>
           <Button color="secondary">No, Thank you</Button>
-          <Button color="primary">Of Course!</Button>
+          <Button color="primary" onClick={this.navigateTo}>Of Course!</Button>
         </ButtonWrapper>
         <DonationPrompt />
       </div>
