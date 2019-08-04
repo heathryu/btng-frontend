@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import DonationDialog from './containers/DonationDialog';
+import TransferResult from './containers/TransferResult';
 import * as serviceWorker from './serviceWorker';
 
 import theme from './theme';
@@ -25,6 +26,11 @@ ReactDOM.render(
                 path="/transfer-details"
                 exact
                 component={DonationDialog}
+              />
+              <Route
+                  path="/transfer-result"
+                  exact
+                  component={TransferResult}
               />
             </Switch>
           </BrowserRouter>
