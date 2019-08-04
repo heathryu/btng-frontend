@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getExchangeRate } from '../../utils';
 
 export const getDestinationAmount = (
   originCurrency,
@@ -6,16 +6,12 @@ export const getDestinationAmount = (
   originAmount
 ) => {
   return async dispatch => {
-    dispatch({ type: 'FETCH_DESTINATION_AMOUNT_LOADING' });
+    dispatch({ type: 'FETCH_TRANSFER_DETAILS_LOADING' });
 
     try {
-      // TODO: Point it to mock that allows Niara NGN currency
-      const resp = await axios.get(
-        `https://api.exchangeratesapi.io/latest?base=${originCurrency}`
-      );
+      const exchangeRate = await getExchangeRate(originCurrency, destCurrency);
 
-      const exchangeRate = resp.data.rates[destCurrency];
-      const destinationAmount = exchangeRate * originAmount;
+      const destinationAmount = (exchangeRate * originAmount).toFixed(2);
 
       dispatch({
         type: 'FETCH_DESTINATION_AMOUNT_SUCCESS',

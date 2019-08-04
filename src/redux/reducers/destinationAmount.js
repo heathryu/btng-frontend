@@ -14,7 +14,7 @@ export default function destinationAmount(state = initialState, action) {
         exchangeRate: action.exchangeRate,
         loading: false
       };
-    case 'FETCH_DESTINATION_AMOUNT_ERROR':
+    case 'FETCH_DESTINATION_AMOUNT_FAILED':
       return {
         ...state,
         loading: false,
