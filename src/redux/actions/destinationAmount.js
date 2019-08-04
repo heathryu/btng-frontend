@@ -10,7 +10,6 @@ export const getDestinationAmount = (
 
     try {
       const exchangeRate = await getExchangeRate(originCurrency, destCurrency);
-      console.log("exchnage rate", exchangeRate, originAmount, originCurrency)
       const destinationAmount = (exchangeRate * originAmount).toFixed(2);
 
       dispatch({

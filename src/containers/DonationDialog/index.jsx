@@ -23,23 +23,13 @@ class  DonationDialog extends React.Component {
   
   componentDidMount(){
     if(this.props.location.transferDetails){
-      console.log("this.props", this.props.location.transferDetails.props)
 
       const {CCY1,CCY2, amount1, amount2} = this.props.location.transferDetails.props
-      console.log("ajds", CCY1,CCY2, amount1, amount2)
-
-
-      // send in currencies and amounts1 and amounts2 
       this.props.getTransferDetails(CCY1, CCY2, amount1, amount2);
     }   
   }
 
 
-  componentDidUpdate(prevProps){
-    if(!isEqual(prevProps, this.props)){
-      console.log("this", this.props)
-    }
-  }
 
 
 
@@ -70,7 +60,6 @@ class  DonationDialog extends React.Component {
   ];
 
   render(){
-    console.log("this.props", this.props.destCurrencySymbol)
     return (
       <div>
         <Container maxWidth="sm" />
