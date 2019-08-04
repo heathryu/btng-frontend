@@ -25,7 +25,7 @@ class  DonationDialog extends React.Component {
     if(this.props.location.transferDetails){
 
       const {CCY1,CCY2, amount1, amount2} = this.props.location.transferDetails.props
-      this.props.getTransferDetails(CCY1, CCY2, amount1, amount2);
+      this.props.getTransferDetails(CCY1, CCY2, Number(amount1), Number(amount2));
     }   
   }
 
