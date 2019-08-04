@@ -41,11 +41,6 @@ const useStyles = makeStyles({
 });
 
 function DonationDialog(props) {
-  React.useEffect(() => {
-    // TODO: Make Proper call
-    props.getTransferDetails('GBP', 'NGN', 5200.322, 4095100.518421);
-  }, []);
-  console.log('props', props);
   const rows = [
     {
       title: 'Transfer amount',
