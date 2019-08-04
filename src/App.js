@@ -27,21 +27,30 @@ class App extends React.Component {
   getCCY1 = CCY1 => this.setState({CCY1})
   getCCY2 = CCY2 => this.setState({CCY2})
 
-  getAmountCCY1 = amount => this.setState({amount2: GBPUSD(amount).toFixed(2)})
-  getAmountCCY2 = amount => this.setState({amount1: GBPUSD(amount).toFixed(2)})
+  getAmountCCY1 = amount => this.setState({
+    amount1: amount,
+    amount2: GBPUSD(amount).toFixed(2)}
+  )
+  getAmountCCY2 = amount => this.setState({
+    amount1: GBPUSD(amount).toFixed(2),
+    amount2: amount
+  })
+
+  send = () => this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, this.state.amount1)
 
   render(){
-    const {CCY1, CCY2, amount1, amount2} = this.state 
+    const {CCY1, CCY2, amount1, amount2} = this.state
+    const {destinationAmount} = this.props  
     return (
       <div className="App">
         <div className="App2">
           <PriceCard value={amount1} CCY={CCY1} getCCY={this.getCCY1} getAmountCCY={this.getAmountCCY1}/>
-          <PriceCard value={amount2} CCY={CCY2} getCCY={this.getCCY2} getAmountCCY={this.getAmountCCY2}/>
+          <PriceCard value={destinationAmount.destinationAmount} CCY={CCY2} getCCY={this.getCCY2} getAmountCCY={this.getAmountCCY2}/>
         </div>
         <Button 
           title= {this.props.destinationAmount.loading ? "loading" : "Send"}
           disabled = {this.props.destinationAmount.loading ? true : false} 
-          onClick={() => this.props.getDestinationAmount("GBP", "NGN", amount1)} 
+          onClick={this.send} 
         />
       </div>
     );
