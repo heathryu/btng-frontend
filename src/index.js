@@ -11,6 +11,7 @@ import DonationDialog from './containers/DonationDialog';
 import TransferResult from './containers/TransferResult';
 import * as serviceWorker from './serviceWorker';
 
+import Header from './components/Header';
 import theme from './theme';
 import store from './redux/configureStore';
 
@@ -20,6 +21,7 @@ ReactDOM.render(
       <MuiThemeProvider theme={theme}>
         <Provider store={store}>
           <BrowserRouter>
+            <Header />
             <Switch>
               <Route path="/" exact component={App} />
               <Route

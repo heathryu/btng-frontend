@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
@@ -9,7 +10,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import isEqual from 'lodash/isEqual';
 import { getTransferDetails } from '../../redux/actions/transferDetails';
 
 const formatNumber = number =>
@@ -18,65 +19,93 @@ const formatNumber = number =>
     maximumFractionDigits: 2
   });
 
-function DonationDialog(props) {
-  React.useEffect(() => {
-    // TODO: Make Proper call
-    props.getTransferDetails('GBP', 'NGN', 5200.322, 4095100.518421);
-  }, []);
-  console.log('props', props);
-  const rows = [
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin: 0 auto;
+`;
+
+class DonationDialog extends React.Component {
+  componentDidMount() {
+    if (this.props.location.transferDetails) {
+      const {
+        CCY1,
+        CCY2,
+        amount1,
+        amount2
+      } = this.props.location.transferDetails.props;
+      this.props.getTransferDetails(
+        CCY1,
+        CCY2,
+        Number(amount1),
+        Number(amount2)
+      );
+    }
+  }
+
+  rowsFunc = () => [
     {
       title: 'Your transfer amount',
-      target: `${props.destCurrencySymbol} ${formatNumber(
-        props.destTransferAmount
+      target: `${this.props.destCurrencySymbol} ${formatNumber(
+        this.props.destTransferAmount
       )}`,
-      origin: `${props.originCurrencySymbol} ${formatNumber(
-        props.originTransferAmount
+      origin: `${this.props.originCurrencySymbol} ${formatNumber(
+        this.props.originTransferAmount
       )}`
     },
     {
-      title: "We'll be donating",
-      target: `${props.destCurrencySymbol} ${formatNumber(
-        props.destDonationAmount
+      title: "You'll be donating",
+      target: `${this.props.destCurrencySymbol} ${formatNumber(
+        this.props.destDonationAmount
       )}`,
-      origin: `${props.originCurrencySymbol} ${formatNumber(
-        props.originDonationAmount
+      origin: `${this.props.originCurrencySymbol} ${formatNumber(
+        this.props.originDonationAmount
       )}`
     },
     {
       title: 'Your total will be',
-      target: `${props.destCurrencySymbol} ${formatNumber(props.destTotal)}`,
-      origin: `${props.originCurrencySymbol} ${formatNumber(props.originTotal)}`
+      target: `${this.props.destCurrencySymbol} ${formatNumber(
+        this.props.destTotal
+      )}`,
+      origin: `${this.props.originCurrencySymbol} ${formatNumber(
+        this.props.originTotal
+      )}`
     }
   ];
 
-  return (
-    <div>
-      <Container maxWidth="sm" />
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell align="right">Your Target Currency</TableCell>
-            <TableCell align="right">Origin Currecy</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              <TableCell align="right">{row.target}</TableCell>
-              <TableCell align="right">{row.origin}</TableCell>
+  render() {
+    return (
+      <div>
+        <Container maxWidth="sm" />
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell align="right">Your Target Currency</TableCell>
+              <TableCell align="right">Origin Currecy</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <Button color="secondary">No, Thank you</Button>
-      <Button color="primary">Of Course!</Button>
-    </div>
-  );
+          </TableHead>
+          <TableBody>
+            {this.rowsFunc().map(row => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.title}
+                </TableCell>
+                <TableCell align="right">{row.target}</TableCell>
+                <TableCell align="right">{row.origin}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+        <ButtonWrapper>
+          <Button color="secondary">No, Thank you</Button>
+          <Button color="primary">Of Course!</Button>
+        </ButtonWrapper>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({

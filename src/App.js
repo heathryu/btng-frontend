@@ -15,11 +15,13 @@ import isEqual from 'lodash/isEqual'
 import { Route } from 'react-router-dom'
 const GBPUSD = conversion(1.233)
 
-const DonationButton = () => (
-  <Route render={({ history}) => (
+const DonationButton = (props) => (
+  <Route render={({ history}) => console.log("proips", props) || (
     <Button
-      title='Donation'
-      onClick={() => { history.push('/transfer-details') }}
+      title='Transfer'
+      onClick={
+        () => { history.push({pathname: '/transfer-details', transferDetails: props }) }
+      }
     />
   )} />
 )
@@ -63,7 +65,7 @@ class App extends React.Component {
           <PriceCard value={amount1} CCY={CCY1} getCCY={this.getCCY1} getAmountCCY={this.getAmountCCY1}/>
           <PriceCard value={destinationAmount.destinationAmount} CCY={CCY2} getCCY={this.getCCY2} getAmountCCY={this.getAmountCCY2}/>
         </div>
-        <DonationButton title="donation"/>
+        <DonationButton title="donation" props={{...this.state, ...this.props,  amount2: destinationAmount.destinationAmount}}/>
       </div>
     );
   }

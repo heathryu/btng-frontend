@@ -64,7 +64,7 @@ export default function MenuListComposition(props) {
               <Paper id="menu-list-grow">
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList className="menuList">
-                    {LIST_OF_CURRENCIES.map(currency => <MenuItem key={currency} onClick={onClick}>{currency}</MenuItem>)}
+                    {LIST_OF_CURRENCIES.map(currency => <MenuItem className="menuItem" key={currency} onClick={onClick}>{currency}</MenuItem>)}
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
