@@ -11,7 +11,9 @@ import {Conversion} from './components/conversion'
 import {getDestinationAmount} from './redux/actions/destinationAmount'
 import {conversion} from './utils'
 import {connect} from 'react-redux'
+import isEqual from 'lodash/isEqual'
 const GBPUSD = conversion(1.233)
+
 class App extends React.Component {
   
   state = {
@@ -29,29 +31,28 @@ class App extends React.Component {
 
   getAmountCCY1 = amount => this.setState({
     amount1: amount,
-    amount2: GBPUSD(amount).toFixed(2)}
-  )
-  getAmountCCY2 = amount => this.setState({
-    amount1: GBPUSD(amount).toFixed(2),
     amount2: amount
-  })
+  }, () => this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, amount))
+  getAmountCCY2 = amount => this.setState({
+    amount1: amount,
+    amount2: amount
+  }, () => this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, amount))
 
-  send = () => this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, this.state.amount1)
+  componentDidUpdate(prevProps, prevState, snapshot){
+
+    if(!isEqual(this.state.CCY1, prevState.CCY1)) this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, this.state.amount1)
+    if(!isEqual(this.state.CCY2, prevState.CCY2)) this.props.getDestinationAmount(this.state.CCY1, this.state.CCY2, this.state.amount2)
+  }
 
   render(){
     const {CCY1, CCY2, amount1, amount2} = this.state
-    const {destinationAmount} = this.props  
+    const {destinationAmount} = this.props
     return (
       <div className="App">
         <div className="App2">
           <PriceCard value={amount1} CCY={CCY1} getCCY={this.getCCY1} getAmountCCY={this.getAmountCCY1}/>
           <PriceCard value={destinationAmount.destinationAmount} CCY={CCY2} getCCY={this.getCCY2} getAmountCCY={this.getAmountCCY2}/>
         </div>
-        <Button 
-          title= {this.props.destinationAmount.loading ? "loading" : "Send"}
-          disabled = {this.props.destinationAmount.loading ? true : false} 
-          onClick={this.send} 
-        />
       </div>
     );
   }
