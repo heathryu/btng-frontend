@@ -22,7 +22,7 @@ import Typography from "@material-ui/core/Typography";
 import { getTransferDetails } from '../../redux/actions/transferDetails';
 
 const formatNumber = number =>
-  number.toLocaleString(undefined, {
+  number.toLocaleString('en-GB', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
