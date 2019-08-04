@@ -18,7 +18,7 @@ const GBPUSD = conversion(1.233)
 const DonationButton = (props) => (
   <Route render={({ history}) => console.log("proips", props) || (
     <Button
-      title='Donation'
+      title='Transfer'
       onClick={
         () => { history.push({pathname: '/transfer-details', transferDetails: props }) }
       }

@@ -55,7 +55,7 @@ class DonationDialog extends React.Component {
       )}`
     },
     {
-      title: "We'll be donating",
+      title: "You'll be donating",
       target: `${this.props.destCurrencySymbol} ${formatNumber(
         this.props.destDonationAmount
       )}`,
