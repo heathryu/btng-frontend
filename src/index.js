@@ -13,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 import theme from './theme';
 import store from './redux/configureStore';
 
-console.log(store.getState());
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 ReactDOM.render(
   <StylesProvider injectFirst>
@@ -23,11 +23,11 @@ ReactDOM.render(
           <BrowserRouter>
             <Switch>
               <Route path="/" exact component={App} />
-              <Route
+              {/* TODO: new component <Route
                 path="/transfer-details"
                 exact
-                component={DonationDialog}
-              />
+                component={DonationConfirm}
+              /> */}
             </Switch>
           </BrowserRouter>
         </Provider>

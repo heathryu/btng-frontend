@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import './index.css'
-const LIST_OF_CURRENCIES = ['USD', 'GBP', 'EUR', 'JPY', 'INR']
+const LIST_OF_CURRENCIES = ['USD', 'GBP', 'NGN']
 
 
 const useStyles = makeStyles(theme => ({
