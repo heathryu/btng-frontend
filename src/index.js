@@ -13,8 +13,6 @@ import * as serviceWorker from './serviceWorker';
 import theme from './theme';
 import store from './redux/configureStore';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 ReactDOM.render(
   <StylesProvider injectFirst>
     <ThemeProvider theme={theme}>
