@@ -33,3 +33,17 @@ export const getExchangeRate = async (originCurrency, destCurrency) => {
   }
   return exchangeRate;
 };
+
+export const getDonationAmount = async (rawAmount, donationLimit) => {
+
+  const roundedAmount = Math.ceil(rawAmount / 1000) * 1000;
+  let donationAmount = roundedAmount - rawAmount;
+
+  if (donationAmount <= 0) {
+    donationAmount += donationLimit;
+  } else {
+    donationAmount += (donationLimit - 1000);
+  }
+
+  return donationAmount;
+};
