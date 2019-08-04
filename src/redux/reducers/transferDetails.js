@@ -2,12 +2,12 @@ const initialState = {
   destCurrency: '',
   destCurrencySymbol: '',
   destTransferAmount: 0,
-  destDonationamount: 0,
+  destDonationAmount: 0,
   destTotal: 0,
   originCurrency: '',
   originCurrencySymbol: '',
   originTransferAmount: 0,
-  originDonationamount: 0,
+  originDonationAmount: 0,
   originTotal: 0,
   loading: false
 };
@@ -29,7 +29,7 @@ export default function destinationAmount(state = initialState, action) {
         originCurrency: action.originCurrency,
         originCurrencySymbol: action.originCurrencySymbol,
         originTransferAmount: action.originTransferAmount,
-        originDonationamount: action.originDonationamount,
+        originDonationAmount: action.originDonationAmount,
         originTotal: action.originTotal,
         loading: false
       };

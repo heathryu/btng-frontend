@@ -4,8 +4,10 @@ import { ThemeProvider } from 'styled-components';
 import { StylesProvider } from '@material-ui/styles';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import DonationDialog from './containers/DonationDialog';
 import * as serviceWorker from './serviceWorker';
 
 import theme from './theme';
@@ -18,7 +20,16 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
         <Provider store={store}>
-          <App />
+          <BrowserRouter>
+            <Switch>
+              <Route path="/" exact component={App} />
+              <Route
+                path="/transfer-details"
+                exact
+                component={DonationDialog}
+              />
+            </Switch>
+          </BrowserRouter>
         </Provider>
       </MuiThemeProvider>
     </ThemeProvider>
