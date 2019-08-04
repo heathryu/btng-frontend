@@ -21,11 +21,11 @@ ReactDOM.render(
           <BrowserRouter>
             <Switch>
               <Route path="/" exact component={App} />
-              {/* TODO: new component <Route
+              <Route
                 path="/transfer-details"
                 exact
-                component={DonationConfirm}
-              /> */}
+                component={DonationDialog}
+              />
             </Switch>
           </BrowserRouter>
         </Provider>
