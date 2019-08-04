@@ -11,14 +11,23 @@ import * as serviceWorker from './serviceWorker';
 import theme from './theme';
 import store from './redux/configureStore';
 
-console.log(store.getState());
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 ReactDOM.render(
   <StylesProvider injectFirst>
     <ThemeProvider theme={theme}>
       <MuiThemeProvider theme={theme}>
         <Provider store={store}>
-          <App />
+          <BrowserRouter>
+            <Switch>
+              <Route path="/" exact component={App} />
+              {/* TODO: new component <Route
+                path="/transfer-details"
+                exact
+                component={DonationConfirm}
+              /> */}
+            </Switch>
+          </BrowserRouter>
         </Provider>
       </MuiThemeProvider>
     </ThemeProvider>
