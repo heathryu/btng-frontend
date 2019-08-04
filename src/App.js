@@ -12,7 +12,17 @@ import {getDestinationAmount} from './redux/actions/destinationAmount'
 import {conversion} from './utils'
 import {connect} from 'react-redux'
 import isEqual from 'lodash/isEqual'
+import { Route } from 'react-router-dom'
 const GBPUSD = conversion(1.233)
+
+const DonationButton = () => (
+  <Route render={({ history}) => (
+    <Button
+      title='Donation'
+      onClick={() => { history.push('/transfer-details') }}
+    />
+  )} />
+)
 
 class App extends React.Component {
   
@@ -53,6 +63,7 @@ class App extends React.Component {
           <PriceCard value={amount1} CCY={CCY1} getCCY={this.getCCY1} getAmountCCY={this.getAmountCCY1}/>
           <PriceCard value={destinationAmount.destinationAmount} CCY={CCY2} getCCY={this.getCCY2} getAmountCCY={this.getAmountCCY2}/>
         </div>
+        <DonationButton title="donation"/>
       </div>
     );
   }
