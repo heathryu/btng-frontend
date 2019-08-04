@@ -1,4 +1,4 @@
-import { getExchangeRate } from '../../utils';
+import { getExchangeRate, getDonationAmount } from '../../utils';
 
 const currencyToSymbol = {
   GBP: '£',
@@ -22,8 +22,9 @@ export const getTransferDetails = (
       const destCurrencySymbol = currencyToSymbol[destCurrencyUpper];
       const originCurrencySymbol = currencyToSymbol[originCurrencyUpper];
 
-      // TODO: Calculate suitable destDonationAmount
-      const destDonationAmount = 3000
+      destAmount = destAmount.toFixed(2);
+      const donationLimit = 3000;
+      const destDonationAmount = await getDonationAmount(destAmount, donationLimit);
 
       const destTotal = destAmount + destDonationAmount;
 
