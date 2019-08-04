@@ -2,3 +2,8 @@
     background-color: black;
     color: white;
 }
+
+.menuItem:hover{
+    background-color: yellow
+}
+
