@@ -1,4 +1,4 @@
-const initialState = { value: 0, exchangeRate: 0, loading: false, error: '' };
+const initialState = { destinationAmount: 0, exchangeRate: 0, loading: false, error: '' };
 
 export default function destinationAmount(state = initialState, action) {
   switch (action.type) {
@@ -8,9 +8,10 @@ export default function destinationAmount(state = initialState, action) {
         loading: true
       };
     case 'FETCH_DESTINATION_AMOUNT_SUCCESS':
+      console.log('success', action);
       return {
         ...state,
-        value: action.value,
+        destinationAmount: action.destinationAmount,
         exchangeRate: action.exchangeRate,
         loading: false
       };
