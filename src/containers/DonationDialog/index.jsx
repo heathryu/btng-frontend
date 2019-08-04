@@ -10,7 +10,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import isEqual from 'lodash/isEqual';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import DonationPrompt from '../DonationPrompt';
 import { getTransferDetails } from '../../redux/actions/transferDetails';
 
 const formatNumber = number =>
@@ -18,6 +20,15 @@ const formatNumber = number =>
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
+
+const TextWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -99,10 +110,14 @@ class DonationDialog extends React.Component {
           </TableBody>
         </Table>
 
+        <TextWrapper>
+          Would you like to participate in Round up and Boost?
+        </TextWrapper>
         <ButtonWrapper>
           <Button color="secondary">No, Thank you</Button>
           <Button color="primary">Of Course!</Button>
         </ButtonWrapper>
+        <DonationPrompt />
       </div>
     );
   }

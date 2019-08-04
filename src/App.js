@@ -31,8 +31,8 @@ class App extends React.Component {
   state = {
     CCY1: "GBP",
     CCY2: "USD",
-    amount1: 0,
-    amount2: 0,
+    amount1: '',
+    amount2: '',
   }
 
  
