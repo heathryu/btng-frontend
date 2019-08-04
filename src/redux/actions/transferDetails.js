@@ -22,8 +22,8 @@ export const getTransferDetails = (
       const destCurrencySymbol = currencyToSymbol[destCurrencyUpper];
       const originCurrencySymbol = currencyToSymbol[originCurrencyUpper];
 
-      destAmount = destAmount.toFixed(2);
-      const donationLimit = 3000;
+      destAmount = Number(destAmount.toFixed(2));
+      const donationLimit = 4000;
       const destDonationAmount = await getDonationAmount(destAmount, donationLimit);
 
       const destTotal = destAmount + destDonationAmount;
